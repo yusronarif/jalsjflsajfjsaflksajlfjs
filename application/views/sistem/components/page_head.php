@@ -124,7 +124,7 @@ if ($this->session->userdata['kelompok'] == 1) {
             <!-- /user dropdown -->
 
             <?php
-            if ($this->cart->total_items() > 0) {
+            if ($this->cart->total_items() > 0 AND $this->uri->rsegment(1)!='keranjang') {
             ?><!-- User cart -->
             <ul class="hidden-print visible-md visible-lg navigation bg-primary">
                 <div class="panel-heading">

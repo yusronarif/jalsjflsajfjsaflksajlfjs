@@ -31,7 +31,9 @@ class Pesan extends Member_Controller
                 $exists = true;
                 $rowid = $item['rowid'];
                 $qty = $item['qty'] + 1;
-                array_push($item['put_when'], $ambil);
+
+                $item['put_when'][$ambil]++;
+                ksort($item['put_when']);
                 $ambil = $item['put_when'];
             }
         }
@@ -54,7 +56,7 @@ class Pesan extends Member_Controller
                 'qty'   => 1,
                 'price' => $this->data ['tmp']->LABA_HM,
                 'name'  => $this->data ['tmpn']->NAMA_MENU,
-                'put_when' => [$ambil]
+                'put_when' => [$ambil => 1]
             );
             $this->cart->insert($data);
             redirect('member/pesan?success=1');
