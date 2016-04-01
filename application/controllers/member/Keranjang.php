@@ -19,21 +19,26 @@ class Keranjang extends Member_Controller
 
     public function validate_update_cart()
     {
-
         // Get the total number of items in cart
         $total = $this->cart->total_items();
 
         // Retrieve the posted information
         $item = $this->input->post('rowid');
         $qty = $this->input->post('qty');
+        $putid = $this->input->post('putid');
 
         // Cycle true all items and update them
         for ($i = 0; $i < $total; $i++) {
             // Create an array with the products rowid's and quantities.
+            $ambil = $this->cart->get_item($item[$i]);
+            $ambil['put_when'][$putid[$i]] = $qty[$i];
+
             $data = array(
-                'rowid' => $item [$i],
-                'qty'   => $qty [$i],
+                'rowid' => $item[$i],
+                'qty'   => array_sum($ambil['put_when']),
+                'put_when' => $ambil['put_when']
             );
+            unset($ambil);
 
             // Update the cart with the new information
             $this->cart->update($data);
@@ -78,24 +83,27 @@ class Keranjang extends Member_Controller
 
                     $this->member_m->save(array('SALDO_MEMBER' => $nilai), $idmember);
 
-                    foreach ($this->cart->contents() as $items):
+                    foreach ($this->cart->contents() as $items) {
                         $this->data ['transdtl'] = $this->transaksi_dtl_m->get_new();
                         $transaksi = $this->hak_menu_m->get($items['id']);
-                        $data = array(
 
-                            'ID_TRANSAKSI_DTL'     => $this->transaksi_dtl_m->increment(),
-                            'ID_PENDIDIKAN'        => $transaksi->ID_PENDIDIKAN,
-                            'ID_MENU'              => $transaksi->ID_MENU,
-                            'NO_TRANSAKSI'         => $idnya,
-                            'ID_DAPUR'             => $transaksi->ID_DAPUR,
-                            'ID_KANTIN'            => $transaksi->ID_KANTIN,
-                            'QTY_TRANSAKSI_DTL'    => $items['qty'],
-                            'HARGA_TRANSAKSI_DTL'  => $transaksi->HARGA_HM,
-                            'LABA_TRANSAKSI_DTL'   => $transaksi->LABA_HM,
-                            'STATUS_TRANSAKSI_DTL' => 0,
-                        );
-                        $this->transaksi_dtl_m->save($data, $id);
-                    endforeach;
+                        foreach ($items['put_when'] as $put_id => $put_val) {
+                            $data = array(
+                                'ID_TRANSAKSI_DTL'       => $this->transaksi_dtl_m->increment(),
+                                'ID_PENDIDIKAN'          => $transaksi->ID_PENDIDIKAN,
+                                'ID_MENU'                => $transaksi->ID_MENU,
+                                'NO_TRANSAKSI'           => $idnya,
+                                'ID_DAPUR'               => $transaksi->ID_DAPUR,
+                                'ID_KANTIN'              => $transaksi->ID_KANTIN,
+                                'QTY_TRANSAKSI_DTL'      => $put_val,
+                                'HARGA_TRANSAKSI_DTL'    => $transaksi->HARGA_HM,
+                                'LABA_TRANSAKSI_DTL'     => $transaksi->LABA_HM,
+                                'PUT_WHEN_TRANSAKSI_DTL' => $put_id,
+                                'STATUS_TRANSAKSI_DTL'   => 0,
+                            );
+                            $this->transaksi_dtl_m->save($data, $id);
+                        }
+                    }
 
                     $this->cart->destroy();
                     redirect('member/keranjang?status=berhasil');
@@ -108,12 +116,26 @@ class Keranjang extends Member_Controller
 
     public function validate_delete_cart($id)
     {
-        $data = array(
-            'rowid' => $id,
-            'qty'   => 0,
-        );
+        list($id, $pid) = explode('::', $id);
 
-        $this->cart->update($data);
+        $ambil = $this->cart->get_item($id);
+        
+        if($ambil['gty'] == $ambil['put_when'][$pid])
+        {
+            $this->cart->remove($id);
+        } else {
+            unset($ambil['put_when'][$pid]);
+
+            $data = array(
+                'rowid'    => $id,
+                'qty'      => array_sum($ambil['put_when']),
+                'put_when' => $ambil['put_when']
+            );
+            unset($ambil);
+
+            $this->cart->update($data);
+        }
+
         redirect('member/keranjang');
     }
 
@@ -123,6 +145,3 @@ class Keranjang extends Member_Controller
         redirect('member/keranjang');
     }
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
