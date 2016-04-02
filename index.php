@@ -42,6 +42,13 @@ date_default_timezone_set('Asia/Jakarta');
  * @filesource
  */
 
+/**
+ *---------------------------------------------------------------
+ * INITIALIZE AUTOLOADER
+ *---------------------------------------------------------------
+ */
+require_once 'application/helpers/app_loader.php';
+echo env('DB_HOST', 'lkajslfjsaf');
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

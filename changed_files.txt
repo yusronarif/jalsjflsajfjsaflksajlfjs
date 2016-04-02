@@ -16,4 +16,11 @@ application/views/sistem/components/page_head.php
 application/views/sistem/components/page_tail.php
 application/views/sistem/member/pesan/index.php
 application/views/sistem/member/pesan/js.php
-application/views/sistem/member/keranjang/index.php
+application/views/sistem/member/keranjang/index.php.gitignore
+application/config/database.php
+application/config/routes.php
+application/controllers/admin/ar/Piutang.php
+application/helpers/app_loader.php
+changed_db.sql
+composer.json
+index.php

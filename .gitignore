@@ -1,4 +1,6 @@
 .DS_Store
+*.lock
+.env
 
 application/cache/*
 !application/cache/index.html
