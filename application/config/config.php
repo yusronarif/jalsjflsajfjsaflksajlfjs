@@ -43,7 +43,7 @@ $config['base_url'] = '//'. $_SERVER['HTTP_HOST']. str_replace(basename($_SERVER
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = env('INDEX_PAGE', '');
 
 /*
 |--------------------------------------------------------------------------

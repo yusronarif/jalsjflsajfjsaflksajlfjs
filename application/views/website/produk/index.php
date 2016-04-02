@@ -37,7 +37,7 @@
                             <div class="gallery-small">                        	
                                 <div class="gallery-outer">
                                     <div class="he-wrap">
-                                        <a href="javascript:void(0)"><img alt="" src="<?php echo site_url('uploads/images/'.$list->GAMBAR_MENU);?>" class="max-image"></a>
+                                        <a href="javascript:void(0)"><img alt="" src="<?php echo base_url('uploads/images/'.$list->GAMBAR_MENU);?>" class="max-image"></a>
                                         <div class="he-view">
                                             <div data-animate="fadeIn" class="bg a0">
                                                 <div class="center-bar">

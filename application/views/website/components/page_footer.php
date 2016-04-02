@@ -53,10 +53,10 @@
                     <div class="text-center">
                         <div class="social-icons">
                             <ul>
-                                <li><a href="#" data-toggle="tooltip" title="Facebook"><img src="<?php echo site_url(); ?>assets/front/images/f_icon.png" alt=""></a></li>
-                                <li><a href="#" data-toggle="tooltip" title="Twitter"><img src="<?php echo site_url(); ?>assets/front/images/t_icon.png" alt=""></a></li>
-                                <li><a href="#" data-toggle="tooltip" title="Pinterest"><img src="<?php echo site_url(); ?>assets/front/images/p_icon.png" alt=""></a></li>
-                                <li><a href="#" data-toggle="tooltip" title="Google Plus"><img src="<?php echo site_url(); ?>assets/front/images/g_icon.png" alt=""></a></li>
+                                <li><a href="#" data-toggle="tooltip" title="Facebook"><img src="<?php echo base_url(); ?>assets/front/images/f_icon.png" alt=""></a></li>
+                                <li><a href="#" data-toggle="tooltip" title="Twitter"><img src="<?php echo base_url(); ?>assets/front/images/t_icon.png" alt=""></a></li>
+                                <li><a href="#" data-toggle="tooltip" title="Pinterest"><img src="<?php echo base_url(); ?>assets/front/images/p_icon.png" alt=""></a></li>
+                                <li><a href="#" data-toggle="tooltip" title="Google Plus"><img src="<?php echo base_url(); ?>assets/front/images/g_icon.png" alt=""></a></li>
 
                             </ul>
                         </div>

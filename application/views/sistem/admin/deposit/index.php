@@ -68,7 +68,7 @@
 							        <div class="form-group">
 								            <label class="col-sm-2 control-label"> FOTO</label>
 								            <div class="col-sm-8">
-								            	<img alt="" src="<?php echo site_url('uploads/images/'.$infox->GAMBAR_MEMBER)?>" width="80">
+								            	<img alt="" src="<?php echo base_url('uploads/images/'.$infox->GAMBAR_MEMBER)?>" width="80">
 								            </div>
 								        </div>
 							        <div class="form-group">

@@ -41,7 +41,7 @@
 				        <div class="form-group">
 							<label class="col-sm-2 control-label">Gambar Lama </label>
 							<div class="col-sm-10">
-								<img alt="" src="<?php echo site_url('uploads/images/'.$item->GAMBAR_MENU)?>" height="200">
+								<img alt="" src="<?php echo base_url('uploads/images/'.$item->GAMBAR_MENU)?>" height="200">
 							</div>
 						</div>
 						<?php }?>

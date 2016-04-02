@@ -29,7 +29,7 @@
 				                            <td><?php echo $no;?></td>
 				                            <td><?php echo $neg->NAMA_MENU?></td>
 				                            <td><?php echo $neg->NAMA_KATEGORI?></td>
-				                            <td><div align="center"><img alt="" src="<?php echo site_url('uploads/images/'.$neg->GAMBAR_MENU)?>" height="60"></div></td>
+				                            <td><div align="center"><img alt="" src="<?php echo base_url('uploads/images/'.$neg->GAMBAR_MENU)?>" height="60"></div></td>
 				                            <td><?php echo $neg->KET_MENU?></td>
 				                            <td>
 				                            <div align="center">

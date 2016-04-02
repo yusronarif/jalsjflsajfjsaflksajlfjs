@@ -29,7 +29,7 @@
                     <div class="block">
                         <div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                <img alt="" src="<?php echo site_url('uploads/images/' . $neg->GAMBAR_MENU); ?>">
+                                <img alt="" src="<?php echo base_url('uploads/images/' . $neg->GAMBAR_MENU); ?>">
                             </div>
                             <div class="caption">
                                 <div align="center">

@@ -1,6 +1,6 @@
         <div class="block">
             <div align="center">
-                <img alt="" src="<?php echo site_url('uploads/images/comodo_secure.png'); ?>">
+                <img alt="" src="<?php echo base_url('uploads/images/comodo_secure.png'); ?>">
             </div>
         </div>
         <!-- Footer -->
@@ -17,34 +17,34 @@
 
 </div>
 <!-- /page container -->
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/jquery.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/jquery-ui.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/charts/sparkline.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/uniform.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/select2.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/inputmask.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/autosize.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/inputlimit.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/listbox.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/multiselect.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/validate.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/tags.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/switch.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/uploader/plupload.full.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/uploader/plupload.queue.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/wysihtml5/wysihtml5.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/forms/wysihtml5/toolbar.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/daterangepicker.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/fancybox.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/moment.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/jgrowl.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/datatables.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/tabletools.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/colorpicker.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/fullcalendar.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/plugins/interface/timepicker.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/bootstrap.min.js'); ?>"></script>
-<script type="text/javascript" src="<?php echo site_url('assets/back/js/application.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/jquery.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/jquery-ui.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/charts/sparkline.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/uniform.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/select2.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/inputmask.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/autosize.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/inputlimit.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/listbox.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/multiselect.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/validate.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/tags.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/switch.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/uploader/plupload.full.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/uploader/plupload.queue.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/wysihtml5/wysihtml5.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/forms/wysihtml5/toolbar.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/daterangepicker.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/fancybox.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/moment.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/jgrowl.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/datatables.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/tabletools.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/colorpicker.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/fullcalendar.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/timepicker.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/bootstrap.min.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/back/js/application.js'); ?>"></script>
 <?php if($javascript) $this->load->view($javascript);?>
 
 </body>

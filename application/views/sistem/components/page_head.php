@@ -16,18 +16,18 @@ if ($this->session->userdata['kelompok'] == 1) {
     <meta name="author" content="GoodSyst"/>
     <title><?php echo $site_namex; ?></title>
 
-    <link href="<?php echo site_url('assets/back/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo site_url('assets/back/css/londinium-theme.css'); ?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo site_url('assets/back/css/styles.css'); ?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo site_url('assets/back/css/icons.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/back/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/back/css/londinium-theme.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/back/css/styles.css'); ?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/back/css/icons.css'); ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="<?php echo site_url(); ?>assets/front/images/favicon.ico"/>
-    <link rel="apple-touch-icon-precomposed" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-57x57.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-114x114.png"/>
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/front/images/favicon.ico"/>
+    <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-114x114.png"/>
 
 </head>
 
@@ -50,7 +50,7 @@ if($_SERVER['CI_ENV']!='development')
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?php echo site_url($kontrol); ?>"><img src="<?php echo site_url('assets/back/img/logo.svg'); ?>" alt="<?php echo $site_name; ?>"></a>
+            <a class="navbar-brand" href="<?php echo site_url($kontrol); ?>"><img src="<?php echo base_url('assets/back/img/logo.svg'); ?>" alt="<?php echo $site_name; ?>"></a>
             <a class="sidebar-toggle"><i class="icon-paragraph-justify2"></i></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
                 <span class="sr-only">Toggle navbar</span>
@@ -65,7 +65,7 @@ if($_SERVER['CI_ENV']!='development')
         <ul class="nav navbar-nav navbar-right collapse" id="navbar-icons">
             <li class="user dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="<?php echo site_url('uploads/images/' . $gambar_user); ?>">
+                    <img src="<?php echo base_url('uploads/images/' . $gambar_user); ?>">
                     <span><?php echo $nama_user; ?></span>
                     <i class="caret"></i>
                 </a>
@@ -93,7 +93,7 @@ if($_SERVER['CI_ENV']!='development')
             <!-- User dropdown -->
             <div class="user-menu dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="<?php echo site_url('uploads/images/' . $gambar_user); ?>">
+                    <img src="<?php echo base_url('uploads/images/' . $gambar_user); ?>">
                     <div class="user-info">
                         <?php echo $nama_user; ?><br>
                         <?php echo $pendidikan_user; ?>
@@ -102,7 +102,7 @@ if($_SERVER['CI_ENV']!='development')
                 <div class="popup dropdown-menu dropdown-menu-right">
                     <div class="thumbnail">
                         <div class="thumb">
-                            <img src="<?php echo site_url('uploads/images/' . $gambar_user); ?>">
+                            <img src="<?php echo base_url('uploads/images/' . $gambar_user); ?>">
                             <div class="thumb-options">
                                 <span>
                                     <a href="<?php echo site_url($kontrol . '/profil') ?>" class="btn btn-icon btn-success"><i class="icon-pencil"></i></a>

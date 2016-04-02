@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="span12">
                 		<div align="center">
-                        	<img src="<?php echo site_url(); ?>uploads/images/alurkse.PNG" alt="">
+                        	<img src="<?php echo base_url(); ?>uploads/images/alurkse.PNG" alt="">
                         </div>
                 </div>
                 

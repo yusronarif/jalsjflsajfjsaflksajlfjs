@@ -44,7 +44,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Gambar Sekarang </label>
 							<div class="col-sm-10">
-								<img alt="" src="<?php echo site_url('uploads/images/'.$infox->GAMBAR_PEGAWAI)?>" width="200" height="200">
+								<img alt="" src="<?php echo base_url('uploads/images/'.$infox->GAMBAR_PEGAWAI)?>" width="200" height="200">
 							</div>
 						</div>
 						<div class="form-group">

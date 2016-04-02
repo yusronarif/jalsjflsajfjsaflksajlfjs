@@ -2,7 +2,7 @@
 		                <div class="fullwidthbanner">
 		                    <ul>
 		                    	<li data-transition="papercut" data-slotamount="5" data-masterspeed="300" class="rev-slide-devices">
-		                            <img src="<?php echo site_url(); ?>assets/front/demo/slides/8.png" alt="">
+		                            <img src="<?php echo base_url(); ?>assets/front/demo/slides/8.png" alt="">
 		                            <div class="caption randomrotate randomrotateout big_orange"
 		                               data-x="30" 
 		                               data-y="135"
@@ -24,11 +24,11 @@
 		                               Menyediakan makanan dan minuman sehat,<br>Dengan program :<br>1. Senin-Selasa : menu utama daging + sayur<br>2. Rabu-Kamis : menu utama ikan (seefood) + sayur<br>3. Jum'at-Sabtu : menu utama ayam, jamur + sayur
 		                            </div>
 		                            <div class="caption sft" data-x="500" data-y="100" data-start="300" data-speed="600" data-easing="easeOutBack">
-		                                <img src="<?php echo site_url(); ?>uploads/images/slider1.jpg" alt="">
+		                                <img src="<?php echo base_url(); ?>uploads/images/slider1.jpg" alt="">
 		                            </div>
 		                        </li>
 		                    	<li data-transition="slideleft" data-slotamount="5" data-masterspeed="300" class="rev-slide-devices">
-		                            <img src="<?php echo site_url(); ?>assets/front/demo/slides/8.png" alt="">
+		                            <img src="<?php echo base_url(); ?>assets/front/demo/slides/8.png" alt="">
 		                            <div class="caption randomrotate big_pink"
 		                               data-x="550" 
 		                               data-y="135"
@@ -51,13 +51,13 @@
 		                               Gerai di tempatkan di setiap sekolah <br>yang bekerjasama dengan KSE,<br>melayani :<br>1. Pemesanan Makanan & Minuman<br>2. Top up / Deposit<br>3. Administrasi 
 		                            </div>
 		                            <div class="caption sft" data-x="30" data-y="100" data-start="300" data-speed="1000" data-easing="easeOutBack">
-		                                <img src="<?php echo site_url(); ?>uploads/images/outlet.png" alt="">
+		                                <img src="<?php echo base_url(); ?>uploads/images/outlet.png" alt="">
 		                            </div>
 		                            
 		                        </li>
 
 		                    	<li data-transition="papercut" data-slotamount="5" data-masterspeed="300" class="rev-slide-devices">
-		                            <img src="<?php echo site_url(); ?>assets/front/demo/slides/8.png" alt="">
+		                            <img src="<?php echo base_url(); ?>assets/front/demo/slides/8.png" alt="">
 		                            <div class="caption randomrotate randomrotateout big_orange"
 		                               data-x="30" 
 		                               data-y="135"
@@ -79,12 +79,12 @@
 		                               Tanggal 2 Mei 2015<br>Gubernur Provinsi Jawa Timur <br><strong>Dr. H. Soekarwo, S.H, M.Hum.</strong><br>Meresmikan Kantin Sekolah Elektronik
 		                            </div>
 		                            <div class="caption sft" data-x="500" data-y="100" data-start="300" data-speed="600" data-easing="easeOutBack">
-		                                <img src="<?php echo site_url(); ?>uploads/images/resmi-KSE.jpg" alt="">
+		                                <img src="<?php echo base_url(); ?>uploads/images/resmi-KSE.jpg" alt="">
 		                            </div>
 		                        </li>
 
 					<li data-transition="slideleft" data-slotamount="5" data-masterspeed="300" class="rev-slide-devices">
-		                            <img src="<?php echo site_url(); ?>assets/front/demo/slides/8.png" alt="">
+		                            <img src="<?php echo base_url(); ?>assets/front/demo/slides/8.png" alt="">
 		                            <div class="caption randomrotate big_pink"
 		                               data-x="550" 
 		                               data-y="135"
@@ -107,7 +107,7 @@
 		                               Kantin Sekolah Elektronik<br>Turut serta mendukung :<br>1. Gerakan Nasional Percepatan Perbaikan Gizi<br>2. Gerakan Memasyarakat Makan Ikan<br>3. Gerakan Nasional Non tunai<br>4. Gerakan Sarapan Bersama di Sekolah
 		                            </div>
 		                            <div class="caption sft" data-x="30" data-y="100" data-start="300" data-speed="1000" data-easing="easeOutBack">
-		                                <img src="<?php echo site_url(); ?>uploads/images/program-pemerintah.jpg" alt="">
+		                                <img src="<?php echo base_url(); ?>uploads/images/program-pemerintah.jpg" alt="">
 		                            </div>
 		                            
 		                        </li>
@@ -210,7 +210,7 @@
                                         <div class="gallery-small">                        	
                                             <div class="gallery-outer">
                                                 <div class="he-wrap">
-                                                    <a href="#"><img alt="" src="<?php echo site_url('uploads/images/'.$list->GAMBAR_MENU);?>" class="max-image"></a>
+                                                    <a href="#"><img alt="" src="<?php echo base_url('uploads/images/'.$list->GAMBAR_MENU);?>" class="max-image"></a>
                                                     <div class="he-view">
                                                         <div data-animate="fadeIn" class="bg a0">
                                                             <div class="center-bar">
@@ -284,7 +284,7 @@
                     </div>
                 	<div class="span4">
                 		<div align="center">
-                        	<img src="<?php echo site_url(); ?>uploads/images/maskot.png" alt="" width="60%">
+                        	<img src="<?php echo base_url(); ?>uploads/images/maskot.png" alt="" width="60%">
                         </div>
                     </div>
                     
@@ -314,32 +314,32 @@
                                 <ul class="clients-carousel jcarousel-list jcarousel-list-horizontal">
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/1.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/1.jpg">
                                         </div>
                                     </li>
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/2.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/2.jpg">
                                         </div>
                                     </li>
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/3.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/3.jpg">
                                         </div>
                                     </li>
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/4.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/4.jpg">
                                         </div>
                                     </li>
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/5.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/5.jpg">
                                         </div>
                                     </li>
                                     <li class="span2">
                                         <div class="client-box">
-                                            <img alt="" src="<?php echo site_url(); ?>uploads/images/6.jpg">
+                                            <img alt="" src="<?php echo base_url(); ?>uploads/images/6.jpg">
                                         </div>
                                     </li>
 

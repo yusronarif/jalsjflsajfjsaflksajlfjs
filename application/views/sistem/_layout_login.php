@@ -8,17 +8,17 @@
 		<meta name="author" content="GoodSyst" />
         <title><?php echo $site_namex;?></title>
         
-        <link href="<?php echo site_url('assets/back/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css">
-        <link href="<?php echo site_url('assets/back/css/londinium-theme.css');?>" rel="stylesheet" type="text/css">
-        <link href="<?php echo site_url('assets/back/css/styles.css');?>" rel="stylesheet" type="text/css">
-        <link href="<?php echo site_url('assets/back/css/icons.css');?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url('assets/back/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url('assets/back/css/londinium-theme.css');?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url('assets/back/css/styles.css');?>" rel="stylesheet" type="text/css">
+        <link href="<?php echo base_url('assets/back/css/icons.css');?>" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
         <!-- Favicons -->
-    	<link rel="shortcut icon" href="<?php echo site_url(); ?>assets/front/images/favicon.ico" />
-    	<link rel="apple-touch-icon-precomposed" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon.png" />
-    	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-72x72.png" />
-    	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo site_url(); ?>assets/front/images/apple-touch-icon-114x114.png" />
+    	<link rel="shortcut icon" href="<?php echo base_url(); ?>assets/front/images/favicon.ico" />
+    	<link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon.png" />
+    	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-72x72.png" />
+    	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-114x114.png" />
         
         
     </head>
@@ -28,7 +28,7 @@
     	<!-- Navbar -->
     	<div class="navbar navbar-inverse" role="navigation">
     		<div class="navbar-header">
-    			<a class="navbar-brand" href="<?php echo site_url($this->uri->segment(1));?>"><img src="<?php echo site_url('assets/back/img/logo.svg')?>" alt="<?php echo $site_name;?>"></a>
+    			<a class="navbar-brand" href="<?php echo site_url($this->uri->segment(1));?>"><img src="<?php echo base_url('assets/back/img/logo.svg')?>" alt="<?php echo $site_name;?>"></a>
     		</div>
     	</div>
     	<!-- /navbar -->
@@ -99,10 +99,10 @@
     		</div>
     	</div>
     	<!-- /footer -->
-    	<script type="text/javascript" src="<?php echo site_url('assets/back/js/jquery.min.js');?>"></script>
-    	<script type="text/javascript" src="<?php echo site_url('assets/back/js/jquery-ui.min.js');?>"></script>
-    	<script type="text/javascript" src="<?php echo site_url('assets/back/js/bootstrap.min.js');?>"></script>
-    	<script type="text/javascript" src="<?php echo site_url('assets/back/js/application.js');?>"></script>	
+    	<script type="text/javascript" src="<?php echo base_url('assets/back/js/jquery.min.js');?>"></script>
+    	<script type="text/javascript" src="<?php echo base_url('assets/back/js/jquery-ui.min.js');?>"></script>
+    	<script type="text/javascript" src="<?php echo base_url('assets/back/js/bootstrap.min.js');?>"></script>
+    	<script type="text/javascript" src="<?php echo base_url('assets/back/js/application.js');?>"></script>
     	
     </body>
 </html>

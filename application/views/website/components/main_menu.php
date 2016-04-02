@@ -18,7 +18,7 @@
                 <div class="row">                	
                     <div class="span3">
                     	<div class="logo">
-                        	<a href="<?php echo site_url()?>"><img src="<?php echo site_url(); ?>assets/front/images/logo-web.svg" alt=""></a>
+                        	<a href="<?php echo site_url()?>"><img src="<?php echo base_url(); ?>assets/front/images/logo-web.svg" alt=""></a>
                         </div>
                     </div>
                     <div class="span9">
