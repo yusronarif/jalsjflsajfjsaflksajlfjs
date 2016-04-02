@@ -24,3 +24,20 @@ application/helpers/app_loader.php
 changed_db.sql
 composer.json
 index.php
+M	application/config/routes.php
+M	application/controllers/Auth.php
+M	application/controllers/admin/Pesanan.php
+M	application/controllers/admin/ar/Piutang.php
+M	application/controllers/member/Keranjang.php
+M	application/core/MY_Controller.php
+M	application/libraries/Admin_Controller.php
+M	application/libraries/Member_Controller.php
+M	application/models/Auth_m.php
+M	application/models/Member_m.php
+M	application/models/Pegawai_m.php
+M	application/models/Piutang_m.php
+M	application/views/sistem/_layout_login.php
+M	application/views/sistem/admin/pengambilan/index.php
+M	application/views/sistem/admin/pesanan/index.php
+M	assets/back/css/styles.css
+M	changed_db.sql

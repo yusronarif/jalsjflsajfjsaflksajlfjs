@@ -5,9 +5,13 @@ class Admin_Controller extends MY_Controller
     function __construct()
     {
         parent::__construct();
+        
+        // initialize models
         $this->load->model('pegawai_m');
         $this->load->model('main_menu_m');
         $this->load->model('pendidikan_m');
+        
+        // another initialize
         if (!empty($this->session->userdata['divisi'])) {
             
             $user_info = $this->pegawai_m->get($this->session->userdata['id']);
@@ -28,14 +32,12 @@ class Admin_Controller extends MY_Controller
                 "SEGMENT_MM" => $this->uri->rsegment(1)
             ));
             
-            $pengecualian = array();
-            
             $pengecualian = array(
+                'auth/logout',
+                'auth/login',
                 'admin/dashboard',
                 'admin/profil',
                 'admin/ganti_password',
-                'admin/user/logout',
-                'admin/user/login',
                 'admin'
             );
             
@@ -43,17 +45,6 @@ class Admin_Controller extends MY_Controller
                 if (count($this->data['hak_akses']) == 0) {
                     redirect('404');
                 }
-            }
-        }
-        
-        // Login check
-        $exception_uris = array(
-            'admin/user/login',
-            'admin/user/logout'
-        );
-        if (in_array(uri_string(), $exception_uris) == FALSE) {
-            if ($this->pegawai_m->loggedin_admin() == FALSE) {
-                redirect('admin/user/login');
             }
         }
     }

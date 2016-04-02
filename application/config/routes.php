@@ -54,6 +54,15 @@ $route['default_controller'] = 'pages';
 /**
  * Admin Routes
  */
+$route['login'] = 'auth';
+$route['admin/user/login'] = 'auth';
+$route['member/user/login'] = 'auth';
+$route['admin/user/logout'] = 'auth/logout';
+$route['member/user/logout'] = 'auth/logout';
+
+/**
+ * Admin Routes
+ */
 $route['admin'] = 'admin/dashboard';
 $route['admin/ar'] = 'error_pages';
 

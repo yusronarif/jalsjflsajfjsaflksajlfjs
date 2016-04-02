@@ -5,14 +5,18 @@ class Member_Controller extends MY_Controller
     function __construct()
     {
         parent::__construct();
+
+        // initialize models
         $this->load->model('member_m');
         $this->load->model('main_menu_m');
         $this->load->model('pendidikan_m');
+
         //menentukan jam closing
         $this->data ['buka']  = '170000';   //mulai closing
         $this->data ['tutup'] = '180000';   //akhir closing
         $this->data ['pukulbuka'] = substr($this->data ['tutup'], 0,2).":".substr($this->data ['tutup'], 2,2);
-        
+
+        // another initialize
         if (!empty($this->session->userdata['divisi'])) {
             
             $user_info = $this->member_m->get($this->session->userdata['id']);
@@ -34,14 +38,12 @@ class Member_Controller extends MY_Controller
                 "SEGMENT_MM" => $this->uri->rsegment(1)
             ));
             
-            $pengecualian = array();
-            
             $pengecualian = array(
+                'auth/logout',
+                'auth/login',
                 'member/dashboard',
                 'member/profil',
                 'member/ganti_password',
-                'member/user/logout',
-                'member/user/login',
                 'member'
             );
             
@@ -49,17 +51,6 @@ class Member_Controller extends MY_Controller
                 if (count($this->data['hak_akses']) == 0) {
                     redirect('404');
                 }
-            }
-        }
-        
-        // Login check
-        $exception_uris = array(
-            'member/user/login',
-            'member/user/logout'
-        );
-        if (in_array(uri_string(), $exception_uris) == FALSE) {
-            if ($this->member_m->loggedin_member() == FALSE) {
-                redirect('member/user/login');
             }
         }
     }
