@@ -98,7 +98,8 @@ class Keranjang extends Member_Controller
                                 'QTY_TRANSAKSI_DTL'      => $put_val,
                                 'HARGA_TRANSAKSI_DTL'    => $transaksi->HARGA_HM,
                                 'LABA_TRANSAKSI_DTL'     => $transaksi->LABA_HM,
-                                'PUT_WHEN_TRANSAKSI_DTL' => $put_id,
+                                'PUT_ON_TRANSAKSI_DTL'   => $put_id,
+                                'PUT_DATE_TRANSAKSI_DTL' => $untuk,
                                 'STATUS_TRANSAKSI_DTL'   => 0,
                             );
                             $this->transaksi_dtl_m->save($data, $id);
