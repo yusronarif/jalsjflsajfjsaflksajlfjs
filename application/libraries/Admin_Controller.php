@@ -12,15 +12,7 @@ class Admin_Controller extends MY_Controller
         $this->load->model('pendidikan_m');
         
         // another initialize
-        if (!empty($this->session->userdata['divisi'])) {
-            
-            $user_info = $this->pegawai_m->get($this->session->userdata['id']);
-            $pendidikan_info = $this->pendidikan_m->get($user_info->ID_PENDIDIKAN);
-            
-            $this->data['nama_user'] = $user_info->NAMA_PEGAWAI;
-            $this->data['gambar_user'] = $user_info->GAMBAR_PEGAWAI;
-            $this->data['pendidikan_user'] = $pendidikan_info->NAMA_PENDIDIKAN;
-            
+        if (!empty($this->session->userdata['divisi'])) {            
             $this->data['mainmenu'] = $this->main_menu_m->get_by(array(
                 "ID_DIVISI" => $this->session->userdata['divisi'],
                 "PARENT_MM" => 0,

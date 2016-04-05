@@ -7,9 +7,7 @@ class Member_Controller extends MY_Controller
         parent::__construct();
 
         // initialize models
-        $this->load->model('member_m');
         $this->load->model('main_menu_m');
-        $this->load->model('pendidikan_m');
 
         //menentukan jam closing
         $this->data ['buka']  = '170000';   //mulai closing
@@ -18,15 +16,6 @@ class Member_Controller extends MY_Controller
 
         // another initialize
         if (!empty($this->session->userdata['divisi'])) {
-            
-            $user_info = $this->member_m->get($this->session->userdata['id']);
-            $pendidikan_info = $this->pendidikan_m->get($user_info->ID_PENDIDIKAN);
-            
-            $this->data['nama_user'] = $user_info->NAMA_MEMBER;
-            $this->data['gambar_user'] = $user_info->GAMBAR_MEMBER;
-            $this->data['saldo_user'] = $user_info->SALDO_MEMBER;
-            $this->data['pendidikan_user'] = $pendidikan_info->NAMA_PENDIDIKAN;
-            
             $this->data['mainmenu'] = $this->main_menu_m->get_by(array(
                 "ID_DIVISI" => $this->session->userdata['divisi'],
                 "PARENT_MM" => 0,

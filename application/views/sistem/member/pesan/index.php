@@ -1,6 +1,6 @@
 <style>
-    .btn-ambil label:active,
-    .btn-ambil label.active {font-weight: bold; font-size: 120%;}
+    .btn-ambil label:active {border-color:#0e90d2;}
+    .btn-ambil label.active {font-weight: bold; background:#0e90d2;}
 </style>
 <div class="row">
     <div class="col-xs-12 hidden-md hidden-lg">
