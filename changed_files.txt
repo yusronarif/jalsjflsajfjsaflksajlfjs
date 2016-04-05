@@ -41,3 +41,4 @@ M	application/views/sistem/admin/pengambilan/index.php
 M	application/views/sistem/admin/pesanan/index.php
 M	assets/back/css/styles.css
 M	changed_db.sql
+
