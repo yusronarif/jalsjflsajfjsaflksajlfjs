@@ -1,10 +1,5 @@
 <?php
-//kelompok 1 admin, 2 member
-if ($this->session->userdata['kelompok'] == 1) {
-    $kontrol = 'admin';
-} else {
-    $kontrol = 'member';
-}
+$log_type = $this->session->userdata['logged_type'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +45,7 @@ if($_SERVER['CI_ENV']!='development')
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<?php echo site_url($kontrol); ?>"><img src="<?php echo base_url('assets/back/img/logo.svg'); ?>" alt="<?php echo $site_name; ?>"></a>
+            <a class="navbar-brand" href="<?php echo site_url($log_type); ?>"><img src="<?php echo base_url('assets/back/img/logo.svg'); ?>" alt="<?php echo $site_name; ?>"></a>
             <a class="sidebar-toggle"><i class="icon-paragraph-justify2"></i></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
                 <span class="sr-only">Toggle navbar</span>
@@ -70,12 +65,12 @@ if($_SERVER['CI_ENV']!='development')
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right icons-right">
-                    <li><a href="<?php echo site_url($kontrol . '/profil') ?>"><i class="icon-user"></i> Profile</a>
+                    <li><a href="<?php echo site_url($log_type . '/profil') ?>"><i class="icon-user"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url($kontrol . '/ganti_password') ?>"><i class="icon-cog"></i> Ganti Password</a>
+                        <a href="<?php echo site_url($log_type . '/ganti_password') ?>"><i class="icon-cog"></i> Ganti Password</a>
                     </li>
-                    <li><?php echo anchor($kontrol . '/user/logout', '<i class="icon-exit"></i> Logout') ?></li>
+                    <li><?php echo anchor('auth/logout', '<i class="icon-exit"></i> Logout') ?></li>
                 </ul>
             </li>
         </ul>
@@ -105,7 +100,7 @@ if($_SERVER['CI_ENV']!='development')
                             <img src="<?php echo base_url('uploads/images/' . $gambar_user); ?>">
                             <div class="thumb-options">
                                 <span>
-                                    <a href="<?php echo site_url($kontrol . '/profil') ?>" class="btn btn-icon btn-success"><i class="icon-pencil"></i></a>
+                                    <a href="<?php echo site_url($log_type . '/profil') ?>" class="btn btn-icon btn-success"><i class="icon-pencil"></i></a>
                                 </span>
                             </div>
                         </div>
@@ -130,8 +125,8 @@ if($_SERVER['CI_ENV']!='development')
                         <?php echo "Total item dikeranjang : " . $this->cart->total_items(); ?><br>
                         <?php echo "Total harga belanja : Rp. " . curr_format($this->cart->total()); ?><br><br>
 
-                        <?php echo anchor('member/keranjang', '<i class="icon-checkmark3"></i> Pembayaran', 'class="btn btn-info"') ?>
-                        <?php echo anchor('member/' . $this->uri->rsegment(1) . '/deletecart', '<i class="icon-remove"></i> Bersihkan Keranjang', 'class="btn btn-danger" onclick="return confirm(\'Yakin akan menghapus?\')"') ?>
+                        <?php echo anchor($log_type. '/keranjang', '<i class="icon-checkmark3"></i> Pembayaran', 'class="btn btn-info"') ?>
+                        <?php echo anchor($log_type. '/' . $this->uri->rsegment(1) . '/deletecart', '<i class="icon-remove"></i> Bersihkan Keranjang', 'class="btn btn-danger" onclick="return confirm(\'Yakin akan menghapus?\')"') ?>
                     </div>
                 </li>
             </ul>
@@ -142,7 +137,7 @@ if($_SERVER['CI_ENV']!='development')
             <ul class="navigation">
                 <li <?php if ($this->uri->rsegment(1) == 'dashboard' OR $this->uri->rsegment(1) == '') {
                     echo 'class="active"';
-                } ?>><?php echo anchor($kontrol . '/dashboard', '<span>Dashboard</span> <i class="icon-screen2"></i>') ?></li>
+                } ?>><?php echo anchor($log_type . '/dashboard', '<span>Dashboard</span> <i class="icon-screen2"></i>') ?></li>
                 <?php foreach ($mainmenu as $main_menu) : ?>
                     <?php if ($main_menu->LINK_MM == null && $main_menu->SEGMENT_MM == null) { ?>
                         <li>
@@ -155,14 +150,14 @@ if($_SERVER['CI_ENV']!='development')
                                     ?>
                                     <li <?php if ($this->uri->rsegment(1) == $main_menu_child->SEGMENT_MM) {
                                         echo 'class="active"';
-                                    } ?>><?php echo anchor($kontrol . '/' . $main_menu_child->LINK_MM, $main_menu_child->NAMA_MM) ?></li>
+                                    } ?>><?php echo anchor($log_type . '/' . $main_menu_child->LINK_MM, $main_menu_child->NAMA_MM) ?></li>
                                 <?php } ?>
                             </ul>
                         </li>
                     <?php } else { ?>
                         <li <?php if ($this->uri->rsegment(1) == $main_menu->SEGMENT_MM) {
                             echo 'class="active"';
-                        } ?>><?php echo anchor($kontrol . '/' . $main_menu->LINK_MM, '<span>' . $main_menu->NAMA_MM . '</span> <i class="' . $main_menu->ICON_MM . '"></i>') ?></li>
+                        } ?>><?php echo anchor($log_type . '/' . $main_menu->LINK_MM, '<span>' . $main_menu->NAMA_MM . '</span> <i class="' . $main_menu->ICON_MM . '"></i>') ?></li>
                     <?php } ?>
                 <?php endforeach; ?>
 
@@ -185,7 +180,7 @@ if($_SERVER['CI_ENV']!='development')
         <!-- /page header -->
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
-                <li><a href="<?php echo site_url($kontrol . '/dashboard'); ?>">Dashboard</a></li>
+                <li><a href="<?php echo site_url($log_type . '/dashboard'); ?>">Dashboard</a></li>
                 <li class="active"><?php judul($this->uri->rsegment(1)); ?></li>
             </ul>
             <?php if ($this->uri->rsegment(1) != 'dashboard' && $this->uri->rsegment(1) != 'ganti_password' && $this->uri->rsegment(1) != 'profil' && $this->main_menu_m->get_by(array('SEGMENT_MM' => $this->uri->rsegment(1)), true)->TIPE_MM == 0) { ?>
@@ -201,7 +196,7 @@ if($_SERVER['CI_ENV']!='development')
                         <ul class="dropdown-menu dropdown-menu-right icons-right">
                             <li <?php if ($this->uri->rsegment(2) == 'edit') {
                                 echo 'class="active"';
-                            } ?>><?php echo anchor('admin/' . $this->uri->rsegment(1) . '/edit', '<i class="icon-plus"></i> Tambah') ?></li>
+                            } ?>><?php echo anchor($log_type. '/' . $this->uri->rsegment(1) . '/edit', '<i class="icon-plus"></i> Tambah') ?></li>
                         </ul>
                     </li>
                 </ul>

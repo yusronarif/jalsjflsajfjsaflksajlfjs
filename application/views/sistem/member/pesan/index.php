@@ -1,6 +1,18 @@
 <style>
-    .btn-ambil label:active {border-color:#0e90d2;}
-    .btn-ambil label.active {font-weight: bold; background:#0e90d2;}
+.btn-ambil label:active {border-color:#0e90d2;}
+.btn-ambil label.active {font-weight: bold; background:#0e90d2;}
+.thumb-caption {
+    background: rgb(255,255,255);
+    padding: 5px 3px;
+    height: 70px;
+    overflow: visible;
+}
+.thumb-caption .caption-price {
+    font-size: 120%;
+}
+.thumb-caption .caption-title {
+    font-weight: bold;
+}
 </style>
 <div class="row">
     <div class="col-xs-12 hidden-md hidden-lg">
@@ -31,11 +43,13 @@
                             <div class="thumb">
                                 <img alt="" src="<?php echo base_url('uploads/images/' . $neg->GAMBAR_MENU); ?>">
                             </div>
+                            <div class="thumb-caption">
+                                <strong class="caption-price">Rp. <?php echo curr_format($neg->LABA_HM); ?></strong><br>
+                                <a data-toggle="modal" role="button" href="#small_modal<?php echo $neg->ID_HM; ?>" class="caption-title"><?php echo $neg->NAMA_MENU; ?></a><br>
+                                (<?php echo $neg->NAMA_KANTIN; ?>)
+                            </div>
                             <div class="caption">
                                 <div align="center">
-                                    <!--<a href="javascript::void(0)" title="" class="caption-title">--><?php //echo $neg->NAMA_MENU; ?><!--</a>-->
-                                    <strong>Rp. <?php echo curr_format($neg->LABA_HM); ?></strong><br>(<?php echo $neg->NAMA_KANTIN; ?>)
-                                    <br><br>
                                     Diambil pada Istirahat ke-
                                     <div class="btn-group btn-group-sm btn-ambil" data-toggle="buttons" style="margin-bottom: 5px">
                                         <label class="btn btn-warning">
