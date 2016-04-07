@@ -50,7 +50,10 @@
                             </div>
                             <div class="caption">
                                 <div align="center">
-                                    Diambil pada Istirahat ke-
+                                    Diambil pada :<br>
+                                    <input type="text" class="datepicker form-control input-sm text-center" placeholder="Pilih Tanggal" name="tanggal" maxlength="10" value="<?php echo set_value('tanggal', date("Y-m-d")); ?>"><br>
+
+                                    Istirahat ke-<br>
                                     <div class="btn-group btn-group-sm btn-ambil" data-toggle="buttons" style="margin-bottom: 5px">
                                         <label class="btn btn-warning">
                                             <input type="radio" name="ambil<?php echo $neg->ID_HM; ?>" class="ambil<?php echo $neg->ID_HM; ?>" value="1" autocomplete="off">1
