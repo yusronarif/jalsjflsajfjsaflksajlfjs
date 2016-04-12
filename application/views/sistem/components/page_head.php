@@ -180,8 +180,14 @@ if($_SERVER['CI_ENV']!='development')
         <!-- /page header -->
         <div class="breadcrumb-line">
             <ul class="breadcrumb">
-                <li><a href="<?php echo site_url($log_type . '/dashboard'); ?>">Dashboard</a></li>
-                <li class="active"><?php judul($this->uri->rsegment(1)); ?></li>
+                <?php if($this->uri->rsegment(1)!='dashboard'){
+                    ?>
+                    <li><a href="<?php echo site_url($log_type . '/dashboard'); ?>">Dashboard</a></li>
+                    <li class="active"><?php judul($this->uri->rsegment(1)); ?></li>
+                    <?php
+                } else {
+                    ?><li><a href="#"><?php judul($this->uri->rsegment(1)); ?></a></li><?php
+                }?>
             </ul>
             <?php if ($this->uri->rsegment(1) != 'dashboard' && $this->uri->rsegment(1) != 'ganti_password' && $this->uri->rsegment(1) != 'profil' && $this->main_menu_m->get_by(array('SEGMENT_MM' => $this->uri->rsegment(1)), true)->TIPE_MM == 0) { ?>
                 <div class="visible-xs breadcrumb-toggle">

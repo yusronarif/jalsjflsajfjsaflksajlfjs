@@ -7,7 +7,7 @@
  */
 
 if (! function_exists('date_db')) {
-    function date_db($date = null, $_lang_ = 'en')
+    function date_db($date = null, $_lang_ = 'id')
     {
         if (! $date) {
             return false;
