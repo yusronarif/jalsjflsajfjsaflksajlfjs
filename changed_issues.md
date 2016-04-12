@@ -23,7 +23,8 @@ hak akses yang di berikan :
 - [x] Rapiin tampilan produk ( animasi Preview, tata letak)
 - [ ] perubahan sistem order dari pesan hari ini utk besok, menjadi pesanan yang bisa di pilih tanggal max 1 bulan, namun tetap durasi waktu awal ( tanggal penyajian makanan ) tetap berlaku yakni order di tutup pukul 5 sore
 - [ ] pengkaktifan notifikasi di gadget ( broadcast messege ) dan option
-- [ ] dasboard . foto profil siswa diaktifkan utk capture melalui camera HP / pilih dari foto penyimpanan di HP.
+- [ ] dasboard .
+- [ ] foto profil siswa diaktifkan utk capture melalui camera HP / pilih dari foto penyimpanan di HP.
 
 ## 3 Modul Dapur
 `Pengaktifan :`
