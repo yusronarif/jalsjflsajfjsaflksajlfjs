@@ -2,77 +2,73 @@
 
 class Piutang_m extends MY_Model
 {
+
     protected $_table_name = 'piutang';
-    protected $_order_by = 'piutang.NO_TRANSAKSI DESC';
-    protected $_primary_key = 'NO_TRANSAKSI';
+    protected $_order_by = 'piutang.NO_PIUTANG DESC';
+    protected $_primary_key = 'NO_PIUTANG';
     protected $_primary_filter = 'strval';
     protected $_timestamps = false;
     public $rules = array();
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    public function get_new()
+    public function get_raw()
     {
-        $keranjang = new stdClass();
-        $keranjang->NO_TRANSAKSI = '';
-        $keranjang->ID_JADWAL = '';
-        $keranjang->ID_MEMBER = '';
-        $keranjang->TGL_TRANSAKSI = '';
-        $keranjang->UNTUK_TRANSAKSI = '';
-        $keranjang->TOTAL_TRANSAKSI = '';
-        $keranjang->STATUS_TRANSAKSI = '';
-        $keranjang->TGL_VOID_TRANSAKSI = '';
-
-        return $keranjang;
-    }
-
-    public function get_pesanan($id, $single = false)
-    {
-
-        $this->db->select('*,SUM(transaksi_dtl.QTY_TRANSAKSI_DTL) AS TOTAL');
-        $this->db->where("transaksi.STATUS_TRANSAKSI<>'0'");
-        $this->db->join('transaksi_dtl', 'transaksi.NO_TRANSAKSI=transaksi_dtl.NO_TRANSAKSI', 'left');
+        $this->db->select('transaksi_dtl.ID_PENDIDIKAN, pendidikan.NAMA_PENDIDIKAN, SUM(transaksi_dtl.HARGA_TRANSAKSI_DTL) AS TOTAL_HARGA,SUM(transaksi_dtl.LABA_TRANSAKSI_DTL-transaksi_dtl.HARGA_TRANSAKSI_DTL) AS TOTAL_LABA');
         $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
         $this->db->join('pendidikan', 'transaksi_dtl.ID_PENDIDIKAN=pendidikan.ID_PENDIDIKAN', 'left');
-        $this->db->group_by('transaksi_dtl.ID_MENU,transaksi_dtl.ID_PENDIDIKAN');
+        $this->db->where('transaksi_dtl.ID_DAPUR', $this->user->ID_DAPUR);
+        $this->db->where('transaksi_dtl.STATUS_AR', 0);
+        $this->db->group_by('transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_PENDIDIKAN');
 
-        return parent::get_by($id, $single);
+        return $this->db->get('transaksi_dtl')->result();
     }
 
-    public function get_histori($id, $single = false)
+    public function create($id=null)
     {
+        if(!$id) return false;
+        if(!$id = $this->encryption->decrypt($id)) return false;
 
-        $this->db->select('*');
-        $this->db->join('transaksi_dtl', 'transaksi.NO_TRANSAKSI=transaksi_dtl.NO_TRANSAKSI', 'left');
-        $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
-        $this->db->join('kantin', 'transaksi_dtl.ID_KANTIN=kantin.ID_KANTIN', 'left');
+        $pid = $this->notrans('AR');
+        $data = array(
+            'NO_PIUTANG' => $pid,
+            'ID_PEGAWAI' => $this->user->ID_PEGAWAI,
+            'ID_DAPUR' => $this->user->ID_DAPUR,
+            'TGL_PIUTANG' => date("Y-m-d")
+        );
 
-        return parent::get_by($id, $single);
-    }
+        $this->db->trans_begin();
+        $this->db->insert($this->_table_name, $data);
+        $this->db->query("UPDATE piutang SET 
+                        TOTAL_PIUTANG = (SELECT SUM(LABA_TRANSAKSI_DTL-HARGA_TRANSAKSI_DTL)
+                            FROM transaksi_dtl
+                            WHERE ID_DAPUR = " . $this->user->ID_DAPUR . "
+                            AND ID_PENDIDIKAN = " . $id . "
+                            AND STATUS_AR = 0
+                            GROUP BY ID_DAPUR, ID_PENDIDIKAN)  
+                        WHERE NO_PIUTANG = '" . $pid."'");
+        echo $this->db->last_query();
+        $this->db->query("INSERT INTO piutang_dtl
+                    SELECT (CASE WHEN @maxid IS NULL THEN @maxid:=1 ELSE @maxid:=@maxid+1 END) nextid, '" . $pid . "', 
+                    ID_TRANSAKSI_DTL, QTY_TRANSAKSI_DTL, HARGA_TRANSAKSI_DTL, LABA_TRANSAKSI_DTL
+                    FROM transaksi_dtl, (SELECT @maxid:=MAX(ID_PIUTANG_DTL) FROM piutang_dtl) vt
+                    WHERE ID_DAPUR = " . $this->user->ID_DAPUR . "
+                    AND ID_PENDIDIKAN = " . $id . "
+                    AND STATUS_AR = 0");
+        $this->db->query("UPDATE transaksi_dtl SET STATUS_AR = 1 WHERE ID_DAPUR = " . $this->user->ID_DAPUR . " AND ID_PENDIDIKAN = " . $id);
 
-    public function get_ambil($id, $kantin, $single = false)
-    {
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+            return false;
+        }
+        else {
+            $this->db->trans_commit();
+            return true;
+        }
 
-        $this->db->select('*');
-        $this->db->where('transaksi_dtl.ID_KANTIN', $kantin);
-        $this->db->join('transaksi_dtl', 'transaksi.NO_TRANSAKSI=transaksi_dtl.NO_TRANSAKSI', 'left');
-        $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
-
-        return parent::get_by($id, $single);
-    }
-
-    public function get_ambil_parent($id, $kantin, $single = false)
-    {
-
-        $this->db->select('*');
-        $this->db->where('transaksi_dtl.ID_KANTIN', $kantin);
-        $this->db->group_by('transaksi.NO_TRANSAKSI');
-        $this->db->join('transaksi_dtl', 'transaksi.NO_TRANSAKSI=transaksi_dtl.NO_TRANSAKSI', 'left');
-        $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
-
-        return parent::get_by($id, $single);
     }
 }

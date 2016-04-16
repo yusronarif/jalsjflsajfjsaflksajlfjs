@@ -70,7 +70,6 @@ class Keranjang extends Member_Controller
                     $idnya = $this->transaksi_m->notrans('T');
                     $this->data ['keranjang'] = $this->transaksi_m->get_new();
                     $data = array(
-
                         'NO_TRANSAKSI'     => $idnya,
                         'ID_JADWAL'        => null,
                         'ID_MEMBER'        => $idmember,
@@ -120,7 +119,7 @@ class Keranjang extends Member_Controller
         list($id, $pid) = explode('::', $id);
 
         $ambil = $this->cart->get_item($id);
-        
+
         if($ambil['gty'] == $ambil['put_when'][$pid])
         {
             $this->cart->remove($id);

@@ -51,7 +51,7 @@
                             <div class="caption">
                                 <div align="center">
                                     Diambil pada :<br>
-                                    <input type="text" class="datepicker form-control input-sm text-center" placeholder="Pilih Tanggal" name="tanggal" maxlength="10" value="<?php echo set_value('tanggal', date("Y-m-d")); ?>"><br>
+                                    <input type="date" class="datepicker form-control input-sm text-center" placeholder="Pilih Tanggal" name="tanggal" maxlength="10" value="<?php echo set_value('tanggal', date("Y-m-d")); ?>"><br>
 
                                     Istirahat ke-<br>
                                     <div class="btn-group btn-group-sm btn-ambil" data-toggle="buttons" style="margin-bottom: 5px">
