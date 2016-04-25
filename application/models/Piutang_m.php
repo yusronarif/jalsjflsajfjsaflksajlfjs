@@ -17,12 +17,15 @@ class Piutang_m extends MY_Model
 
     public function get_raw()
     {
-        $this->db->select('transaksi_dtl.ID_PENDIDIKAN, pendidikan.NAMA_PENDIDIKAN, SUM(transaksi_dtl.HARGA_TRANSAKSI_DTL) AS TOTAL_HARGA,SUM(transaksi_dtl.LABA_TRANSAKSI_DTL-transaksi_dtl.HARGA_TRANSAKSI_DTL) AS TOTAL_LABA');
+        //$this->db->select('transaksi_dtl.ID_PENDIDIKAN, pendidikan.NAMA_PENDIDIKAN, SUM(transaksi_dtl.HARGA_TRANSAKSI_DTL) AS TOTAL_PIUTANG');
+        $this->db->select('transaksi_dtl.ID_PENDIDIKAN PID, transaksi_dtl.ID_MENU MID, SUM(transaksi_dtl.QTY_TRANSAKSI_DTL) QTY, transaksi_dtl.HARGA_TRANSAKSI_DTL HARGA, pendidikan.NAMA_PENDIDIKAN, menu.NAMA_MENU');
         $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
         $this->db->join('pendidikan', 'transaksi_dtl.ID_PENDIDIKAN=pendidikan.ID_PENDIDIKAN', 'left');
         $this->db->where('transaksi_dtl.ID_DAPUR', $this->user->ID_DAPUR);
         $this->db->where('transaksi_dtl.STATUS_AR', 0);
-        $this->db->group_by('transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_PENDIDIKAN');
+        $this->db->group_by('transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_PENDIDIKAN, transaksi_dtl.ID_MENU, transaksi_dtl.HARGA_TRANSAKSI_DTL');
+        //$this->db->group_by('transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_PENDIDIKAN');
+        //echo $this->db->get_compiled_select();
 
         return $this->db->get('transaksi_dtl')->result();
     }
@@ -43,7 +46,7 @@ class Piutang_m extends MY_Model
         $this->db->trans_begin();
         $this->db->insert($this->_table_name, $data);
         $this->db->query("UPDATE piutang SET 
-                        TOTAL_PIUTANG = (SELECT SUM(LABA_TRANSAKSI_DTL-HARGA_TRANSAKSI_DTL)
+                        TOTAL_PIUTANG = (SELECT SUM(HARGA_TRANSAKSI_DTL*QTY_TRANSAKSI_DTL)
                             FROM transaksi_dtl
                             WHERE ID_DAPUR = " . $this->user->ID_DAPUR . "
                             AND ID_PENDIDIKAN = " . $id . "
@@ -53,11 +56,12 @@ class Piutang_m extends MY_Model
         echo $this->db->last_query();
         $this->db->query("INSERT INTO piutang_dtl
                     SELECT (CASE WHEN @maxid IS NULL THEN @maxid:=1 ELSE @maxid:=@maxid+1 END) nextid, '" . $pid . "', 
-                    ID_TRANSAKSI_DTL, QTY_TRANSAKSI_DTL, HARGA_TRANSAKSI_DTL, LABA_TRANSAKSI_DTL
+                    ID_TRANSAKSI_DTL, SUM(QTY_TRANSAKSI_DTL), HARGA_TRANSAKSI_DTL, LABA_TRANSAKSI_DTL
                     FROM transaksi_dtl, (SELECT @maxid:=MAX(ID_PIUTANG_DTL) FROM piutang_dtl) vt
                     WHERE ID_DAPUR = " . $this->user->ID_DAPUR . "
                     AND ID_PENDIDIKAN = " . $id . "
-                    AND STATUS_AR = 0");
+                    AND STATUS_AR = 0
+                    GROUP BY transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_PENDIDIKAN, transaksi_dtl.ID_MENU, transaksi_dtl.HARGA_TRANSAKSI_DTL");
         $this->db->query("UPDATE transaksi_dtl SET STATUS_AR = 1 WHERE ID_DAPUR = " . $this->user->ID_DAPUR . " AND ID_PENDIDIKAN = " . $id);
 
         if ($this->db->trans_status() === FALSE)

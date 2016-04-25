@@ -1,7 +1,7 @@
 ALTER TABLE `transaksi_dtl`
   ADD COLUMN `PUT_WHEN_TRANSAKSI_DTL` TINYINT(1) DEFAULT 1 NULL COMMENT 'Penentuan pengambilan makanan' AFTER `AMBIL_TRANSAKSI_DTL`;
 
-UPDATE main_menu SET LINK_MM = 'ar-ap/piutang' WHERE LINK_MM = 'piutang';
+UPDATE main_menu SET LINK_MM = 'admin/ar-ap/piutang' WHERE LINK_MM = 'piutang';
 
 ALTER TABLE `transaksi_dtl`
   ADD COLUMN `PUT_DATE_TRANSAKSI_DTL` DATE NULL COMMENT 'penentuan diambil pada tgl' AFTER `AMBIL_TRANSAKSI_DTL`,

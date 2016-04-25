@@ -26,7 +26,7 @@ class Piutang extends Admin_Controller
         if($this->input->post('xid'))
         {
             if($this->piutang_m->create($this->input->post('xid'))){
-                //redirect('admin/ar-ap/piutang', 'get');
+                redirect('admin/ar-ap/piutang', 'get');
             }
         }
 

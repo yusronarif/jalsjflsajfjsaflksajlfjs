@@ -36,7 +36,7 @@
                                     <td class="text-right"><?php echo $no; ?></td>
                                     <td><?php echo $row_val->NO_PIUTANG; ?></td>
                                     <td class="text-center"><?php echo format_date($row_val->TGL_PIUTANG); ?></td>
-                                    <td class="text-right"><?php echo number_format($row_val->TOTAL_PIUTANG); ?></td>
+                                    <td class="text-right"><?php echo curr_format($row_val->TOTAL_PIUTANG); ?></td>
                                     <td class="text-center"><?php echo config_item('status')['ar'][$row_val->STATUS_PIUTANG]; ?></td>
                                     <td class="text-center"><a href="#" class="btn btn-link btn-xs"><i class="icon-eye"></i> detil</a></td>
                                 </tr>

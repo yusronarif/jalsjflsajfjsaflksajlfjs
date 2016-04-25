@@ -10,6 +10,22 @@ if ($pfile == 'piutang-raw') {
             $f.append($('<input type="hidden" name="xid">').val($id));
             $f.submit();
         }
+
+        $('.ptotal').each(function (i, el)
+        {
+            var _subtotal = 0;
+            var _spans = 0;
+
+            $('.subtotal-'+$(el).attr('data-id')).each(function(x, subs)
+            {
+                _subtotal = _subtotal + Number($(subs).val());
+                _spans = _spans + 1;
+            });
+
+            $(el).html(_subtotal);
+            $('.need-spans').attr('rowspan', _spans);
+            //$('table.table').css('display', 'block');
+        })
     });
 </script>
 <?php

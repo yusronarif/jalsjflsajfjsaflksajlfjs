@@ -20,27 +20,48 @@
                             <tr>
                                 <th width="5px">No.</th>
                                 <th>Sekolah</th>
+                                <th>Makanan</th>
+                                <th>Harga</th>
                                 <th>Total</th>
-                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php
-                            $no = 1;
+                            $no = 0;
+                            $before = '';
                             foreach ($datas as $row_id => $row_val) {
                                 ?>
                                 <tr>
-                                    <td class="text-right"><?php echo $no; ?></td>
+                                    <?php if($before!=$row_val->PID){
+                                        $no++;
+                                        ?><td class="text-right need-spans"><?php echo $no; ?></td><?php
+                                    }?>
                                     <td><?php echo $row_val->NAMA_PENDIDIKAN; ?></td>
-                                    <td class="text-right"><?php echo number_format($row_val->TOTAL_LABA); ?></td>
-                                    <td class="text-center">
-                                        <a href="javascript: arCreate('<?php echo $this->encryption->encrypt($row_val->ID_PENDIDIKAN) ?>')" class="btn btn-success btn-xs">
-                                            <i class="fa fa-truck"></i> create
-                                        </a>
+                                    <td><?php echo $row_val->NAMA_MENU. ' (@ '. $row_val->QTY. ' x '. curr_format($row_val->HARGA). ')'; ?></td>
+                                    <td class="text-right">
+                                        <?php
+                                        $piutang_total = $row_val->QTY * $row_val->HARGA;
+                                        echo curr_format($piutang_total);
+
+                                        $hdn = '';
+                                        $hdn .= '<input type="hidden" name="subtotal[' . $row_val->PID . ']" value="'.$piutang_total.'" class="subtotal-' . $row_val->PID . '">';
+                                        $hdn .= '<input type="hidden" name="qty[' . $row_val->PID . '][' . $row_val->MID . ']" value="'.$row_val->QTY.'" class="qty-' . $row_val->PID . '-' . $row_val->MID . '">';
+                                        echo $hdn;
+                                        ?>
                                     </td>
+                                    <?php if($before!=$row_val->PID){
+                                        ?>
+                                        <td class="text-center need-spans">
+                                            <b class="ptotal piutang_total<?php echo $row_val->PID;?>" data-id="<?php echo $row_val->PID;?>">0</b><br><br>
+                                            <a href="javascript: arCreate('<?php echo $this->encryption->encrypt($row_val->PID) ?>')" class="btn btn-success btn-xs">
+                                                <i class="fa fa-truck"></i> create
+                                            </a>
+                                        </td>
+                                        <?php
+                                    }?>
                                 </tr>
                                 <?php
-                                $no++;
+                                $before = $row_val->PID;
                             } ?>
                             </tbody>
                         </table>
@@ -52,8 +73,8 @@
         } else {
             ?>
             <div class="alert alert-success text-center">
-                <b>Tidak ada Piutang</b><br><br>
-                Silahkan <a href="<?php echo site_url('admin/ar-ap/piutang/create')?>">[klik link]</a> berikut untuk membuat <a href="<?php echo site_url('ar-ap/piutang/create')?>"><b>PIUTANG Baru</b></a>.
+                <b>Tidak ada Data</b><br><br>
+                Silahkan <a href="<?php echo site_url('admin/ar-ap/piutang')?>">[klik link]</a> untuk kembali ke halaman <a href="<?php echo site_url('admin/ar-ap/piutang')?>"><b>Data PIUTANG</b></a>.
             </div><br>
             <?php
         }
