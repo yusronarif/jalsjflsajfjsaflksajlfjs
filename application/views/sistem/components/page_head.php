@@ -11,12 +11,15 @@ $log_type = $this->session->userdata['logged_type'];
     <meta name="author" content="GoodSyst"/>
     <title><?php echo $site_namex; ?></title>
 
+    <!--[if IE]>
+    <script src="<?php echo base_url('assets/plugins/better-dom/dist/better-dom-legacy.min.js'); ?>"></script>
+    <![endif]-->
     <link href="<?php echo base_url('assets/back/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/back/css/londinium-theme.css'); ?>" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url('assets/back/css/styles.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/back/css/icons.css'); ?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/back/css/styles.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/front/images/favicon.ico"/>

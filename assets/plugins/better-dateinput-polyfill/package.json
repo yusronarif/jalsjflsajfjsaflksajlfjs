@@ -1,0 +1,37 @@
+{
+  "name": "better-dateinput-polyfill",
+  "description": "input[type=date] polyfill for better-dom",
+  "version": "2.0.0-rc.2",
+  "author": "Maksim Chemerisuk",
+  "license": "MIT",
+  "homepage": "https://github.com/chemerisuk/better-dateinput-polyfill",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chemerisuk/better-dateinput-polyfill"
+  },
+  "peerDependencies": {
+    "better-dom": "^3.0.0-rc.1",
+    "better-emmet-plugin": "^1.0.0-rc.1",
+    "better-i18n-plugin": "^2.0.0-rc.1",
+    "better-time-element": "^1.0.0-rc.3"
+  },
+  "devDependencies": {
+    "better-dom-boilerplate": "git://github.com/chemerisuk/better-dom-boilerplate.git"
+  },
+  "config": {
+    "gulp": "--gulpfile node_modules/better-dom-boilerplate/gulpfile.js --cwd ."
+  },
+  "scripts": {
+    "test": "gulp test $npm_package_config_gulp",
+    "start": "gulp dev $npm_package_config_gulp",
+    "version": "gulp dist $npm_package_config_gulp && git add -A dist bower.json",
+    "postversion": "git push && git push --tags",
+    "publish": "gulp gh-pages $npm_package_config_gulp"
+  },
+  "karmaFiles": [
+    "bower_components/better-dom/dist/better-dom.js",
+    "bower_components/better-i18n-plugin/dist/better-i18n-plugin.js",
+    "bower_components/better-emmet-plugin/dist/better-emmet-plugin.js",
+    "bower_components/better-time-element/dist/better-time-element.js"
+  ]
+}

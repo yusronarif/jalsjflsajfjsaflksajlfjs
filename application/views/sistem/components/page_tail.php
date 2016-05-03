@@ -43,6 +43,11 @@
 <script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/colorpicker.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/fullcalendar.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/back/js/plugins/interface/timepicker.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/better-dom/dist/better-dom.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/better-i18n-plugin/dist/better-i18n-plugin.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/better-time-element/dist/better-time-element.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/better-emmet-plugin/dist/better-emmet-plugin.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/plugins/better-dateinput-polyfill/dist/better-dateinput-polyfill.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/back/js/bootstrap.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('assets/back/js/application.js'); ?>"></script>
 <?php if($javascript) $this->load->view($javascript);?>

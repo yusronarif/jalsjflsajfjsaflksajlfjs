@@ -615,6 +615,8 @@ $(function ()
     });
 
     $(".datepicker-restricted").datepicker({minDate: -20, maxDate: "+1M +10D", showOtherMonths: true});
+    $('input[type=date]').attr('data-polyfill', 'all').attr('data-format', 'dd-MM-yyyy');
+    // $('input[type=date]').attr('data-format', 'dd-MM-yyyy');
 
     /* # Bootstrap Plugins
      ================================================== */

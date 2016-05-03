@@ -41,7 +41,7 @@
                     <div class="block">
                         <div class="thumbnail thumbnail-boxed">
                             <div class="thumb">
-                                <img alt="" src="<?php echo base_url('uploads/images/' . $neg->GAMBAR_MENU); ?>">
+                                <!--<img alt="--><?php //echo $neg->NAMA_MENU; ?><!--" src="--><?php //echo base_url('uploads/images/' . $neg->GAMBAR_MENU); ?><!--">-->
                             </div>
                             <div class="thumb-caption">
                                 <strong class="caption-price">Rp. <?php echo curr_format($neg->LABA_HM); ?></strong><br>
@@ -51,7 +51,7 @@
                             <div class="caption">
                                 <div align="center">
                                     Diambil pada :<br>
-                                    <input type="date" class="datepicker form-control input-sm text-center" placeholder="Pilih Tanggal" name="tanggal" maxlength="10" value="<?php echo set_value('tanggal', date("Y-m-d")); ?>"><br>
+                                    <input type="date" class="input-sm text-center" placeholder="Pilih Tanggal" name="tanggal" maxlength="10" value="<?php echo set_value('tanggal', date("Y-m-d")); ?>"><br>
 
                                     Istirahat ke-<br>
                                     <div class="btn-group btn-group-sm btn-ambil" data-toggle="buttons" style="margin-bottom: 5px">
