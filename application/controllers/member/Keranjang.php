@@ -31,12 +31,12 @@ class Keranjang extends Member_Controller
         for ($i = 0; $i < $total; $i++) {
             // Create an array with the products rowid's and quantities.
             $ambil = $this->cart->get_item($item[$i]);
-            $ambil['put_when'][$putid[$i]] = $qty[$i];
+            $ambil['put'][$putid[$i]] = $qty[$i];
 
             $data = array(
                 'rowid' => $item[$i],
                 'qty'   => array_sum($ambil['put_when']),
-                'put_when' => $ambil['put_when']
+                'put'   => $ambil['put']
             );
             unset($ambil);
 
@@ -86,7 +86,9 @@ class Keranjang extends Member_Controller
                         $this->data ['transdtl'] = $this->transaksi_dtl_m->get_new();
                         $transaksi = $this->hak_menu_m->get($items['id']);
 
-                        foreach ($items['put_when'] as $put_id => $put_val) {
+                        foreach ($items['put'] as $puts => $put_val) {
+                            list($put_tgl, $put_id) = explode('::', $puts);
+
                             $data = array(
                                 'ID_TRANSAKSI_DTL'       => $this->transaksi_dtl_m->increment(),
                                 'ID_PENDIDIKAN'          => $transaksi->ID_PENDIDIKAN,
@@ -98,7 +100,7 @@ class Keranjang extends Member_Controller
                                 'HARGA_TRANSAKSI_DTL'    => $transaksi->HARGA_HM,
                                 'LABA_TRANSAKSI_DTL'     => $transaksi->LABA_HM,
                                 'PUT_ON_TRANSAKSI_DTL'   => $put_id,
-                                'PUT_DATE_TRANSAKSI_DTL' => $untuk,
+                                'PUT_DATE_TRANSAKSI_DTL' => $put_tgl,
                                 'STATUS_TRANSAKSI_DTL'   => 0,
                             );
                             $this->transaksi_dtl_m->save($data, $id);
@@ -120,16 +122,16 @@ class Keranjang extends Member_Controller
 
         $ambil = $this->cart->get_item($id);
 
-        if($ambil['gty'] == $ambil['put_when'][$pid])
+        if($ambil['gty'] == $ambil['put'][$pid])
         {
             $this->cart->remove($id);
         } else {
-            unset($ambil['put_when'][$pid]);
+            unset($ambil['put'][$pid]);
 
             $data = array(
                 'rowid'    => $id,
-                'qty'      => array_sum($ambil['put_when']),
-                'put_when' => $ambil['put_when']
+                'qty'      => array_sum($ambil['put']),
+                'put'      => $ambil['put']
             );
             unset($ambil);
 
