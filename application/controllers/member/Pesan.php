@@ -52,7 +52,7 @@ class Pesan extends Member_Controller
                     $rowid = $item['rowid'];
                     $qty = $item['qty'] + $this->input->post('cart_qty');
 
-                    $item['put'][$tanggal.'::'.$ambil]++;
+                    $item['put'][$tanggal.'::'.$ambil] += $this->input->post('cart_qty');
                     ksort($item['put']);
                     $ambil = $item['put'];
                 }
@@ -76,10 +76,10 @@ class Pesan extends Member_Controller
                 $this->data ['tmpn'] = $this->menu_m->get($this->data ['tmp']->ID_MENU);
                 $data = array(
                     'id'       => $this->data ['tmp']->ID_HM,
-                    'qty'      => 1,
+                    'qty'      => $this->input->post('cart_qty'),
                     'price'    => $this->data ['tmp']->LABA_HM,
                     'name'     => $this->data ['tmpn']->NAMA_MENU,
-                    'put'      => [$tanggal.'::'.$ambil => 1]
+                    'put'      => [$tanggal.'::'.$ambil => $this->input->post('cart_qty')]
                 );
                 $this->cart->insert($data);
                 //redirect('member/pesan?success=1');

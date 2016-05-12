@@ -1,3 +1,6 @@
+<?php
+if($this->cart->total_items() <= 0) echo '<meta http-equiv="refresh" content="3; '.site_url('member/pesan').'">';
+?>
 <?php if (! empty($_GET['status'])) {
     if ($_GET['status'] == 'berhasil') { ?>
         <div class="alert alert-success fade in block-inner">

@@ -13,6 +13,9 @@
 }
 </style>
 <div class="row">
+    <?php
+    //if($this->cart->total_items() > 0) echo var_dump($this->cart->contents());
+    ?>
     <div class="col-xs-12 hidden-md hidden-lg">
         <div class="block">
             <div class="panel panel-default">
