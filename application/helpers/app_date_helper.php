@@ -31,86 +31,72 @@ if (! function_exists('date_db')) {
  * @return date long 7 juni 2006 21:30:00
  */
 if (! function_exists('format_date')) {
-    function format_date($_datefull_, $_format_ = 'D', $_show_ = 'B', $_lang_ = 'id')
+    function format_date($date, $opt=[])
     {
-        $monthName = array(
-            'id' => array(
-                'S' => array('', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nop', 'Des'),
-                'L' => array(
-                    '',
-                    'Januari',
-                    'Februari',
-                    'Maret',
-                    'April',
-                    'Mei',
-                    'Juni',
-                    'Juli',
-                    'Agustus',
-                    'September',
-                    'Oktober',
-                    'Nopember',
-                    'Desember',
-                ),
-            ),
-            'en' => array(
-                'S' => array('', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'),
-                'L' => array(
-                    '',
-                    'January',
-                    'February',
-                    'March',
-                    'April',
-                    'May',
-                    'June',
-                    'July',
-                    'August',
-                    'September',
-                    'October',
-                    'November',
-                    'December',
-                ),
-            ),
-        );
+        if(!$date) return false;
 
-        if (isset($_datefull_)) {
-            if (strpos($_datefull_, ' ') !== false) {
-                list ($_date_, $_time_) = explode(' ', $_datefull_);
-            } else {
-                $_date_ = $_datefull_;
-                $_time_ = '';
-                $_show_ = 'D';
-            }
+        $months = [
+            'id' => [
+                'medium' => ['', 'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt', 'Nop', 'Des'],
+                'long' => [
+                    '', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
+                    'Agustus', 'September', 'Oktober', 'Nopember', 'Desember',
+                ],
+            ],
+            'en' => [
+                'medium' => ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                'long' => [
+                    '', 'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                    'August', 'September', 'October', 'November', 'December',
+                ],
+            ],
+        ];
+        $days = [
+            'id' => [
+                'medium' => ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'],
+                'long' => ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'],
+            ],
+            'en' => [
+                'medium' => ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                'long' => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            ],
+        ];
+        $par['lang'] = 'id';
+        $par['show'] = 'short';
+        $par['time'] = false;
+        $par['day'] = false;
 
-            list ($_year_, $_month_, $_day_) = explode('-', $_date_);
-
-            if ($_format_ == 'D') {
-                if ($_lang_ == 'id') {
-                    if ($_show_ == 'B' || $_show_ == 'D') {
-                        $str[] = $_day_ . '-' . $_month_ . '-' . $_year_;
-                    }
-                } else {
-                    if ($_show_ == 'B' || $_show_ == 'D') {
-                        $str[] = $_month_ . '-' . $_day_ . '-' . $_year_;
-                    }
-                }
-            } else {
-                if ($_lang_ == 'id') {
-                    if ($_show_ == 'B' || $_show_ == 'D') {
-                        $str[] = $_day_ . ' ' . $monthName[$_lang_][$_format_][intval($_month_)] . ' ' . $_year_;
-                    }
-                } else {
-                    if ($_show_ == 'B' || $_show_ == 'D') {
-                        $str[] = $monthName[$_lang_][$_format_][intval($_month_)] . ', ' . $_day_ . ' ' . $_year_;
-                    }
-                }
-            }
-            if ($_show_ == 'B' || $_show_ == 'T') {
-                $str[] = ' ' . $_time_;
-            }
-
-            return $str ? implode('', $str) : '';
-        } else {
-            return false;
+        if(count($opt)>0)
+        {
+            $par = array_merge($par, $opt);
         }
+
+        if (strpos($date, ' ') !== false)
+        {
+            list ($_date, $_time) = explode(' ', $date);
+        } else {
+            $_date = $date;
+            $_time = '';
+        }
+
+        list ($y, $m, $d) = explode('-', $_date);
+
+        if($par['day']==true)
+        {
+            $dy = date('w', mktime(0,0,0,(int) $m,(int) $d,(int) $y));
+            $str[] = $days[$par['lang']][in_array($par['show'], ['medium', 'long']) ? $par['show'] : 'long'][$dy]. ' ';
+        }
+
+        if(in_array($par['show'], ['medium', 'long']))
+        {
+            $str[] = $d. ' '. $months[$par['lang']][$par['show']][(int) $m]. ' '. $y;
+        }
+        else {
+            $str[] = $d. '-'. $m. '-'. $y;
+        }
+
+        if($par['time']==true) $str[] = ' '. $_time;
+
+        return implode('', $str);
     }
 }

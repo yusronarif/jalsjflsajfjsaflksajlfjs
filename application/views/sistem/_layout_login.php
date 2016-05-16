@@ -53,7 +53,6 @@
     <?php } ?>
 
     <?php echo form_open('', 'role="form"'); ?>
-
     <div class="popup-header">
         <a href="javascript::(0)" class="pull-left"><i class="icon-user"></i></a>
         <span class="text-semibold">Login Form</span>

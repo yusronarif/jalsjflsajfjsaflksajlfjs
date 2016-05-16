@@ -108,6 +108,7 @@
         </div>
     </div>
 <?php endforeach; ?>
+
 <div id="modalCart" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -147,9 +148,12 @@
                         <label class="col-sm-4 control-label">Jadwal</label>
                         <div class="col-sm-8">
                             <select class="form-control required" name="cart_jadwal">
-                                <option value="1">Sarapan</option>
-                                <option value="2">Makan Siang</option>
-                                <option value="3">Makan Sore</option>
+                                <?php
+                                foreach (config_item('pesan')['put_on'] as $pid => $pval)
+                                {
+                                    echo '<option value="'. $pid. '">'. $pval. '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>

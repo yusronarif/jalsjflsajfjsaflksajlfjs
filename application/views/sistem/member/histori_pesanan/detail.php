@@ -32,18 +32,17 @@
             </thead>
             <tbody>
                 <?php
+                $i = 1;
                 $gtot = 0;
                 $bef_putdate = '';
-                $wkt_ambil = [1=>'Sarapan', 2=>'Makan Siang', 3=>'Makan Sore'];
 
                 foreach ($historipesanan as $neg) {
                     if($bef_putdate!=$neg->PUT_DATE_TRANSAKSI_DTL){
-                        $i = 1;
                         ?>
                         <tr>
                             <td></td>
                             <td colspan="6">
-                                <b># Tanggal Konsumsi: <?php echo format_date($neg->PUT_DATE_TRANSAKSI_DTL);?></b>
+                                <b>:: Tanggal Konsumsi: <?php echo format_date($neg->PUT_DATE_TRANSAKSI_DTL);?></b>
                             </td>
                         </tr>
                         <?php
@@ -55,7 +54,7 @@
                         <td><?php echo $neg->NAMA_MENU; ?></td>
                         <td class="text-right"><?php echo $neg->LABA_TRANSAKSI_DTL; ?></td>
                         <td class="text-center"><?php echo $neg->QTY_TRANSAKSI_DTL; ?></td>
-                        <td><?php echo $neg->NAMA_KANTIN.'<br>"'.$wkt_ambil[$neg->PUT_ON_TRANSAKSI_DTL].'"'; ?></td>
+                        <td><?php echo $neg->NAMA_KANTIN.'<br>('.config_item('pesan')['put_on'][$neg->PUT_ON_TRANSAKSI_DTL].')'; ?></td>
                         <?php $sub = $neg->QTY_TRANSAKSI_DTL * $neg->LABA_TRANSAKSI_DTL ?>
                         <td class="text-right"><?php echo number_format($sub); ?></td>
                         <td class="text-center">

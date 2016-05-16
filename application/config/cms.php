@@ -4,8 +4,16 @@ $config['site_namex'] = 'KSE';
 
 $config['status'] = [
     //piutang
-    'ar' => [0=>'', 1=>'piutang'],
+    'ar' => [0 => '', 1 => 'piutang'],
 
     //hutang
-    'ap' => [0=>'', 1=>'hutang'],
+    'ap' => [0 => '', 1 => 'hutang'],
+];
+
+$config['pesan'] = [
+    'put_on' => [
+        1 => 'Sarapan',
+        2 => 'Makan Siang',
+        3 => 'Makan Sore',
+    ],
 ];
