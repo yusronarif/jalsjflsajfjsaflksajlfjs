@@ -32,12 +32,13 @@ class Transaksi_m extends MY_Model
 
     public function get_pesanan($id, $single = false)
     {
-        $this->db->select('*,SUM(transaksi_dtl.QTY_TRANSAKSI_DTL) AS TOTAL');
+        $this->db->select('*,SUM(transaksi_dtl.QTY_TRANSAKSI_DTL) AS SUB_QTY');
         $this->db->where("transaksi.STATUS_TRANSAKSI<>'0'");
         $this->db->join('transaksi_dtl', 'transaksi.NO_TRANSAKSI=transaksi_dtl.NO_TRANSAKSI', 'left');
         $this->db->join('menu', 'transaksi_dtl.ID_MENU=menu.ID_MENU', 'left');
         $this->db->join('pendidikan', 'transaksi_dtl.ID_PENDIDIKAN=pendidikan.ID_PENDIDIKAN', 'left');
-        $this->db->group_by('transaksi_dtl.ID_MENU,transaksi_dtl.ID_PENDIDIKAN');
+        $this->db->group_by('transaksi_dtl.PUT_DATE_TRANSAKSI_DTL, transaksi_dtl.ID_DAPUR, transaksi_dtl.ID_MENU,transaksi_dtl.ID_PENDIDIKAN');
+        $this->db->order_by('transaksi_dtl.PUT_DATE_TRANSAKSI_DTL, transaksi_dtl.ID_DAPUR, menu.NAMA_MENU');
 
         return parent::get_by($id, $single);
     }

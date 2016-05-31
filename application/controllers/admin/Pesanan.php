@@ -11,7 +11,6 @@ class Pesanan extends Admin_Controller
 
     public function index()
     {
-
         if (!$this->input->post('tanggal')) $_POST['tanggal'] = date("d-m-Y");
         if (!$this->input->post('tanggal_max')) $_POST['tanggal_max'] = date("d-m-Y", strtotime(date("Y-m-d"). " +1 week"));
 
@@ -19,8 +18,8 @@ class Pesanan extends Admin_Controller
 
         $this->data ['pesanan'] = $this->transaksi_m->get_pesanan(array(
             'transaksi_dtl.ID_DAPUR'    => $dapur->ID_DAPUR,
-            'transaksi.UNTUK_TRANSAKSI >=' => date_db($this->input->post('tanggal')),
-            'transaksi.UNTUK_TRANSAKSI <=' => date_db($this->input->post('tanggal_max')),
+            'transaksi_dtl.PUT_DATE_TRANSAKSI_DTL >=' => date_db($this->input->post('tanggal')),
+            'transaksi_dtl.PUT_DATE_TRANSAKSI_DTL <=' => date_db($this->input->post('tanggal_max')),
         ));
 
         $this->data['subview'] = 'sistem/admin/pesanan/index';

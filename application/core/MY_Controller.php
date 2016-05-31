@@ -10,7 +10,7 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
 
-        if (in_array($this->uri->segment(1), array('admin', 'member', 'auth'))) {
+        if (in_array($this->uri->segment(1), ['admin', 'member', 'auth'])) {
             // Auth check
             $exception_uris = array(
                 'auth/login',
@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller
                     redirect('auth/login');
                 }
 
-                if ($this->uri->segment(1) != $this->session->userdata('logged_type')) {
+                if (!in_array($this->uri->segment(1), [$this->session->userdata('logged_type'), 'auth'])) {
                     redirect($this->session->userdata('logged_type'). '/dashboard');
                 }
             }

@@ -22,11 +22,11 @@ $log_type = $this->session->userdata['logged_type'];
     <link href="<?php echo base_url('assets/back/css/styles.css'); ?>" rel="stylesheet" type="text/css">
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/front/images/favicon.ico"/>
-    <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-57x57.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>assets/front/images/apple-touch-icon-114x114.png"/>
+    <link rel="shortcut icon" href="<?php echo base_url('assets/front/images/favicon.ico'); ?>"/>
+    <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets/front/images/apple-touch-icon.png'); ?>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url('assets/front/images/apple-touch-icon-57x57.png'); ?>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url('assets/front/images/apple-touch-icon-72x72.png'); ?>"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url('assets/front/images/apple-touch-icon-114x114.png'); ?>"/>
 
 </head>
 
@@ -72,7 +72,7 @@ if($_SERVER['CI_ENV']!='development')
                     <li><a href="<?php echo site_url($log_type . '/profil') ?>"><i class="icon-user"></i> Profile</a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url($log_type . '/ganti_password') ?>"><i class="icon-cog"></i> Ganti Password</a>
+                        <a href="<?php echo site_url('auth/password') ?>"><i class="icon-cog"></i> Ganti Password</a>
                     </li>
                     <li><?php echo anchor('auth/logout', '<i class="icon-exit"></i> Logout') ?></li>
                 </ul>
@@ -193,7 +193,7 @@ if($_SERVER['CI_ENV']!='development')
                     ?><li><a href="#"><?php judul($this->uri->rsegment(1)); ?></a></li><?php
                 }?>
             </ul>
-            <?php if ($this->uri->rsegment(1) != 'dashboard' && $this->uri->rsegment(1) != 'ganti_password' && $this->uri->rsegment(1) != 'profil' && $this->main_menu_m->get_by(array('SEGMENT_MM' => $this->uri->rsegment(1)), true)->TIPE_MM == 0) { ?>
+            <?php /*if ($this->uri->rsegment(1) != 'dashboard' && $this->uri->rsegment(1) != 'password' && $this->uri->rsegment(1) != 'profil' && $this->main_menu_m->get_by(array('SEGMENT_MM' => $this->uri->rsegment(1)), true)->TIPE_MM == 0) { ?>
                 <div class="visible-xs breadcrumb-toggle">
                     <a class="btn btn-link btn-lg btn-icon" data-toggle="collapse" data-target=".breadcrumb-buttons"><i class="icon-menu2"></i></a>
                 </div>
@@ -210,6 +210,6 @@ if($_SERVER['CI_ENV']!='development')
                         </ul>
                     </li>
                 </ul>
-            <?php } ?>
+            <?php }*/ ?>
         </div>
         <!-- Form bordered -->

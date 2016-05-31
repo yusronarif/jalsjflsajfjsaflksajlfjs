@@ -53,10 +53,21 @@ table th {text-align: center;}
                             $no = 1;
                             $untuk_before = '';
                             foreach ($pesanan as $neg) {
-                                if($untuk_before != $neg->UNTUK_TRANSAKSI){
+                                if($untuk_before != $neg->PUT_DATE_TRANSAKSI_DTL){
+                                    $sub_qty[$neg->PUT_DATE_TRANSAKSI_DTL] = 0;
+
+                                    if($no>1){
+                                        ?>
+                                        <tr>
+                                            <th class="text-right" colspan="2">Sub Total</th>
+                                            <th class="text-right"><?php echo $sub_qty[$untuk_before];?></th>
+                                            <th colspan="2"></th>
+                                        </tr>
+                                        <?php
+                                    }
                                     ?>
                                     <tr>
-                                        <td colspan="5"><?php echo format_date($neg->UNTUK_TRANSAKSI); ?></td>
+                                        <td colspan="5"><b>:: Tanggal Saji: <?php echo format_date($neg->PUT_DATE_TRANSAKSI_DTL); ?></b></td>
                                     </tr>
                                     <?php
                                 }
@@ -64,14 +75,20 @@ table th {text-align: center;}
                                 <tr>
                                     <td class="text-right"><?php echo $no; ?></td>
                                     <td><?php echo $neg->NAMA_MENU; ?></td>
-                                    <td class="text-right"><?php echo number_format($neg->TOTAL); ?></td>
+                                    <td class="text-right"><?php echo $neg->SUB_QTY; ?></td>
                                     <td><?php echo $neg->NAMA_PENDIDIKAN; ?></td>
-                                    <td>Istirahat Ke-<?php echo $neg->PUT_ON_TRANSAKSI_DTL; ?></td>
+                                    <td><?php echo config_item('pesan')['put_on'][$neg->PUT_ON_TRANSAKSI_DTL]; ?></td>
                                 </tr>
                                 <?php
                                 $no++;
-                                $untuk_before = $neg->UNTUK_TRANSAKSI;
+                                $sub_qty[$neg->PUT_DATE_TRANSAKSI_DTL] += $neg->SUB_QTY;
+                                $untuk_before = $neg->PUT_DATE_TRANSAKSI_DTL;
                             } ?>
+                            <tr>
+                                <th class="text-right" colspan="2">Sub Total</th>
+                                <th class="text-right"><?php echo $sub_qty[$untuk_before];?></th>
+                                <th colspan="2"></th>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
