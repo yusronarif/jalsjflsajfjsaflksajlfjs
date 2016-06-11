@@ -55,10 +55,12 @@ $route['default_controller'] = 'pages';
  * Admin Routes
  */
 $route['login'] = 'auth';
-$route['admin/user/login'] = 'auth';
-$route['member/user/login'] = 'auth';
+$route['admin/user/login'] = 'auth/login';
+$route['member/user/login'] = 'auth/login';
 $route['admin/user/logout'] = 'auth/logout';
 $route['member/user/logout'] = 'auth/logout';
+$route['admin/user/ganti_password'] = 'auth/password';
+$route['member/user/ganti_password'] = 'auth/password';
 
 /**
  * Admin Routes

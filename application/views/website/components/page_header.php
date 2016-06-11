@@ -57,6 +57,12 @@
             $(document).ready(function ()
             {
                 $('#flexslider-loader').fadeOut(800);
+
+                $('.signup').click(function ()
+                {
+                    $('.modal').css('z-index', '99999');
+                    $('#modalSignup').modal();
+                });
             });
         });
     </script>

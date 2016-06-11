@@ -1,5 +1,8 @@
 <?php
 $log_type = $this->session->userdata['logged_type'];
+$cur_menu = explode('/', uri_string(), 2);
+$cur_menu = isset($cur_menu[1]) ? $cur_menu[1] : 'dashboard';
+$page_title = '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -139,32 +142,58 @@ if($_SERVER['CI_ENV']!='development')
 
             <!-- Main navigation -->
             <ul class="navigation">
-                <li <?php if ($this->uri->rsegment(1) == 'dashboard' OR $this->uri->rsegment(1) == '') {
-                    echo 'class="active"';
-                } ?>><?php echo anchor($log_type . '/dashboard', '<span>Dashboard</span> <i class="icon-screen2"></i>') ?></li>
-                <?php foreach ($mainmenu as $main_menu) : ?>
-                    <?php if ($main_menu->LINK_MM == null && $main_menu->SEGMENT_MM == null) { ?>
+                <li <?php if ($cur_menu == 'dashboard') echo 'class="active"'; ?>>
+                    <?php echo anchor($log_type . '/dashboard', '<span>Dashboard</span> <i class="icon-screen2"></i>') ?>
+                </li>
+                <?php
+                foreach ($mainmenu as $mn) {
+                    ?>
+                    <li <?php if ($this->uri->rsegment(1) == $mn['SEGMENT_MM']) echo 'class="active"';?>>
+                        <a href="<?php echo ($mn['LINK_MM']==null || $mn['LINK_MM']=='' ? site_url($log_type . '/' . $mn['LINK_MM']) : 'javascript:void(0);'); ?>"><span><?php echo $mn['NAMA_MM']; ?></span>
+                            <i class="<?php echo $mn['ICON_MM']; ?>"></i>
+                        </a>
+                        <?php
+                        if($mn['SUBS'] != null){
+                            echo '<ul>';
+                            foreach ($mn['SUBS'] as $mn_sub){
+                                ?>
+                                <li <?php if ($cur_menu == $mn_sub['SEGMENT_MM']) echo 'class="active"';?>><?php echo anchor($log_type . '/' . $mn_sub['LINK_MM'], $mn_sub['NAMA_MM']) ?></li>
+                                <?php
+                            }
+                            echo '</ul>';
+                        }
+                        ?>
+                    </li>
+                    <?php
+
+                    /*if ($mn['LINK_MM'] == null && $mn['SEGMENT_MM'] == null) {
+                        ?>
                         <li>
-                            <a href="javascript:void(0)"><span><?php echo $main_menu->NAMA_MM; ?></span>
-                                <i class="<?php echo $main_menu->ICON_MM; ?>"></i></a>
+                            <a href="javascript:void(0)"><span><?php echo $mn['NAMA_MM']; ?></span>
+                                <i class="<?php echo $mn['ICON_MM']; ?>"></i>
+                            </a>
                             <ul>
                                 <?php
-                                $mainmenux = $this->db->query("SELECT * FROM main_menu WHERE PARENT_MM='$main_menu->ID_MM' AND ID_DIVISI='" . $this->session->userdata['divisi'] . "' AND STATUS_MM=1")->result();
-                                foreach ($mainmenux as $main_menu_child) {
+                                $mainsub = $this->db->query("SELECT * FROM main_menu WHERE PARENT_MM='$mn['ID_MM']' AND ID_DIVISI='" . $this->session->userdata['divisi'] . "' AND STATUS_MM=1")->result();
+
+                                foreach ($mainsub as $mn_sub) {
                                     ?>
-                                    <li <?php if ($this->uri->rsegment(1) == $main_menu_child->SEGMENT_MM) {
+                                    <li <?php if ($this->uri->rsegment(1) == $mn_sub->SEGMENT_MM) {
                                         echo 'class="active"';
-                                    } ?>><?php echo anchor($log_type . '/' . $main_menu_child->LINK_MM, $main_menu_child->NAMA_MM) ?></li>
-                                <?php } ?>
+                                    } ?>><?php echo anchor($log_type . '/' . $mn_sub->LINK_MM, $mn_sub->NAMA_MM) ?></li>
+                                <?php
+                                } ?>
                             </ul>
                         </li>
-                    <?php } else { ?>
-                        <li <?php if ($this->uri->rsegment(1) == $main_menu->SEGMENT_MM) {
+                    <?php
+                    } else {
+                        ?>
+                        <li <?php if ($this->uri->rsegment(1) == $mn['SEGMENT_MM']) {
                             echo 'class="active"';
-                        } ?>><?php echo anchor($log_type . '/' . $main_menu->LINK_MM, '<span>' . $main_menu->NAMA_MM . '</span> <i class="' . $main_menu->ICON_MM . '"></i>') ?></li>
-                    <?php } ?>
-                <?php endforeach; ?>
-
+                        } ?>><?php echo anchor($log_type . '/' . $mn['LINK_MM'], '<span>' . $mn['NAMA_MM'] . '</span> <i class="' . $mn['ICON_MM'] . '"></i>') ?></li>
+                    <?php
+                    }*/
+                } ?>
             </ul>
             <!-- /main navigation -->
 
@@ -178,21 +207,28 @@ if($_SERVER['CI_ENV']!='development')
         <!-- Page header -->
         <div class="page-header">
             <div class="page-title">
-                <h3><?php judul($this->uri->rsegment(1)); ?></h3>
+                <h3><?php echo $page_title; ?></h3>
             </div>
         </div>
         <!-- /page header -->
         <div class="breadcrumb-line">
-            <ul class="breadcrumb">
-                <?php if($this->uri->rsegment(1)!='dashboard'){
-                    ?>
-                    <li><a href="<?php echo site_url($log_type . '/dashboard'); ?>">Dashboard</a></li>
-                    <li class="active"><?php judul($this->uri->rsegment(1)); ?></li>
-                    <?php
+            <ul class="breadcrumb"><?php
+                if($this->uri->rsegment(1)!='dashboard'){
+                    $d_actv = '';
+                    $d_href = site_url($log_type . '/dashboard');
                 } else {
-                    ?><li><a href="#"><?php judul($this->uri->rsegment(1)); ?></a></li><?php
-                }?>
-            </ul>
+                    $d_actv = 'class="active"';
+                    $d_href = 'javascript:void(0);';
+                }
+
+                echo '<li '. $d_actv. '><a href="'. $d_href. '">Dashboard</a></li>';
+                foreach ($this->uri->segment_array() as $ur_id => $ur_val)
+                {
+                    if($ur_id>1){
+                        echo '<li class="active">'. judul($ur_val). '</li>';
+                    }
+                }
+            ?></ul>
             <?php /*if ($this->uri->rsegment(1) != 'dashboard' && $this->uri->rsegment(1) != 'password' && $this->uri->rsegment(1) != 'profil' && $this->main_menu_m->get_by(array('SEGMENT_MM' => $this->uri->rsegment(1)), true)->TIPE_MM == 0) { ?>
                 <div class="visible-xs breadcrumb-toggle">
                     <a class="btn btn-link btn-lg btn-icon" data-toggle="collapse" data-target=".breadcrumb-buttons"><i class="icon-menu2"></i></a>

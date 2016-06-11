@@ -24,7 +24,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url('auth/logout');?>">
+                                    <a href="<?php echo site_url('auth/logout/home');?>">
                                         <div>Logout <i class="icon-signout"></i></div>
                                     </a>
                                 </li>
@@ -33,8 +33,9 @@
                         <?php
                     } else {
                         ?>
-                        <a class="btn btn-warning" target="_blank" href="<?php echo site_url('member') ?>">Member Area</a>
-                        <a class="btn btn-primary" target="_blank" href="<?php echo site_url('admin') ?>">Petugas Area</a>
+                        <a href="javascript:void(0)" class="signup" data-toggle="modal">Daftar baru</a>
+                        atau
+                        <a class="btn btn-primary" href="<?php echo site_url('auth/login') ?>">Login</a>
                         <?php
                     }
                     ?>
@@ -91,3 +92,19 @@
         </div>
     </div>
 </header>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="modalSignup">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="$('#modalSignup').modal('hide')">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Konfirmasi</h4>
+            </div>
+            <div class="modal-body">
+                Silahkan menghubungi pihak Koperasi di Sekolah masing-masing
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="$('#modalSignup').modal('hide')">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
